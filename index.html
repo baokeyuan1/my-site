@@ -1,12 +1,288 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <title>我的个人主页</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiuyiJushi | 个人主页</title>
+    <style>
+        /* ========== 全局基础样式，一般不用动 ========== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #ffffff;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+        a { color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* ========== 页头：姓名与身份 ========== */
+        .header { margin-bottom: 40px; }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+        .header .tagline {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 16px;
+        }
+        .header .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* ========== 章节标题 ========== */
+        .section { margin-bottom: 40px; }
+        .section h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #374151;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+
+        /* ========== 条目：经历 / 教育 ========== */
+        .entry { margin-bottom: 24px; }
+        .entry:last-child { margin-bottom: 0; }
+        .entry-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .entry-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .entry-subtitle {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        .entry-date {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            white-space: nowrap;
+        }
+        .entry-desc {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-top: 6px;
+        }
+
+        /* ========== 论文列表 ========== */
+        .pub-item { margin-bottom: 20px; }
+        .pub-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .pub-authors {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 2px;
+        }
+        .pub-venue {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        /* ========== 新闻列表 ========== */
+        .news-item {
+            display: flex;
+            gap: 16px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        .news-date {
+            color: #9ca3af;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ========== 页脚 ========== */
+        .footer {
+            margin-top: 64px;
+            padding-top: 24px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.8rem;
+            color: #9ca3af;
+            text-align: center;
+        }
+
+        /* ========== 手机端微调 ========== */
+        @media (max-width: 480px) {
+            body { padding: 32px 16px 60px; }
+            .header h1 { font-size: 1.6rem; }
+            .entry-header { flex-direction: column; gap: 2px; }
+        }
+    </style>
 </head>
 <body>
-    <h1>你好，我是bky</h1>
-    <p>欢迎来到我的主页！这里将用来介绍我自己。</p>
-    <p>我的 GitHub 用户名是：bkyuan1 </p>
+
+    <!-- ============================================================
+         1. 页头：姓名、身份标签、联系方式
+         把所有“你的名字”等替换成你自己的信息
+         ============================================================ -->
+    <header class="header">
+        <h1>LiuyiJushi</h1>
+        <p class="tagline">WLU ug</p>
+        <div class="contact-links">
+            <a href="mailto:你的邮箱@example.com">liuyijushi61hermit@gmail.com</a>
+            <a href="https://github.com/你的用户名" target="_blank">bkyuan1</a>
+            <a href="https://scholar.google.com/你的GoogleScholar链接" target="_blank">Google Scholar</a>
+            <!-- 不需要的链接可以整行删掉 -->
+        </div>
+    </header>
+
+    <!-- ============================================================
+         2. 关于我：一段简短的自我介绍
+         ============================================================ -->
+    <section class="section">
+        <h2>About me</h2>
+        <p style="font-size: 0.95rem; color: #4b5563;">
+            <!--
+            这里写一段简短的自我介绍。例如：我目前是 XX 大学 XX 专业的博士研究生，
+            研究兴趣包括机器学习、计算机视觉等。在此之前，我在 XX 公司担任 XX 职位，
+            硕士毕业于 XX 大学。我致力于探索更高效、可靠的智能系统。
+            -->
+            This guy is mysterious and has left nothing~
+        </p>
+    </section>
+
+    <!-- ============================================================
+         3. 新闻 / 动态（可选）
+         不需要可以整个 <section> 删掉
+         ============================================================ -->
+    <section class="section">
+        <h2>New</h2>
+
+        <div class="news-item">
+            <span class="news-date">2026.6</span>
+            <span>Graduate from high school.</span>
+        <!--
+        <div class="news-item">
+            <span class="news-date">2026.10</span>
+            <span>一篇论文被 XXX 会议录用。</span>
+        </div>
+        <div class="news-item">
+            <span class="news-date">2026.08</span>
+            <span>开始在 XX 单位担任 XX 职位。</span>
+        </div>
+        <div class="news-item">
+            <span class="news-date">2026.06</span>
+            <span>获得 XX 学位 / 奖项。</span>
+        </div>
+        -->
+    </section>
+
+    <!-- ============================================================
+         4. 教育经历
+         每个 <div class="entry"> 是一条经历，复制粘贴可以增加更多
+         ============================================================  
+
+    <section class="section">
+        <h2>教育经历</h2>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">你的学位 · 你的专业</span>
+                <span class="entry-date">2022 – 至今</span>
+            </div>
+            <div class="entry-subtitle">你的大学名称</div>
+            <p class="entry-desc">研究方向 / 导师 / 简短说明（可选）。</p>
+        </div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">学士 · 你的专业</span>
+                <span class="entry-date">2018 – 2022</span>
+            </div>
+            <div class="entry-subtitle">你的大学名称</div>
+        </div>
+        <!-- 想加更多教育经历，把上面的 <div class="entry">...</div> 复制一份改文字即可 -->
+    
+    <!--
+    </section>
+    -->
+   
+
+    <!-- ============================================================
+         5. 工作 / 研究经历
+         ============================================================ 
+    <section class="section">
+        <h2>经历</h2>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">你的职位</span>
+                <span class="entry-date">2024 – 至今</span>
+            </div>
+            <div class="entry-subtitle">公司 / 机构名称</div>
+            <p class="entry-desc">
+                用一两句话说明你在这里做了什么。例如：负责 XX 系统的开发与优化，
+                主导了 XX 模块的设计，将性能提升了 XX%。
+            </p>
+        </div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">实习职位</span>
+                <span class="entry-date">2023 – 2024</span>
+            </div>
+            <div class="entry-subtitle">公司 / 机构名称</div>
+            <p class="entry-desc">简短描述你的贡献或成果。</p>
+        </div>
+        <!-- 复制粘贴增加更多经历 
+
+    </section>
+    -->
+    
+    <!-- ============================================================
+         6. 发表成果（论文、项目等）
+         不需要可以整个 <section> 删掉
+         ============================================================ 
+    <section class="section">
+        <h2>发表成果</h2>
+
+        <div class="pub-item">
+            <div class="pub-title">你的论文标题</div>
+            <div class="pub-authors">你的名字, 合作者A, 合作者B</div>
+            <div class="pub-venue">会议 / 期刊名称, 年份</div>
+            <!-- 有链接的话，可以把下面这行取消注释并填入网址 -->
+            <!-- <div><a href="论文链接" target="_blank">PDF</a> · <a href="代码链接" target="_blank">代码</a></div> --><!--
+        </div>
+
+        <div class="pub-item">
+            <div class="pub-title">第二篇论文标题</div>
+            <div class="pub-authors">你的名字, 合作者</div>
+            <div class="pub-venue">会议 / 期刊名称, 年份</div>
+        </div>
+        <!-- 复制粘贴增加更多成果 
+
+    </section>
+    
+    -->
+
+    
+    <!-- ============================================================
+         页脚：版权信息，改一下名字和年份即可
+         ============================================================ -->
+    <footer class="footer">
+        © 2026 你的名字
+    </footer>
+
 </body>
 </html>
