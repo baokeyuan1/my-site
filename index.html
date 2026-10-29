@@ -1,288 +1,533 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiuyiJushi | 个人主页</title>
-    <style>
-        /* ========== 全局基础样式，一般不用动 ========== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #1f2937;
-            background: #ffffff;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 48px 24px 80px;
-        }
-        a { color: #2563eb; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bao Keyuan</title>
+<meta name="description" content="Bao Keyuan — first-year undergraduate at Westlake University, Hangzhou. Competitive programming, fundamentals of artificial intelligence, algorithm optimization.">
+<meta name="author" content="Bao Keyuan">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%232b6cb8'/><text x='32' y='45' font-size='32' text-anchor='middle' fill='%23ffffff' font-family='Georgia,serif'>B</text></svg>">
+<script>document.documentElement.className += ' js';</script>
 
-        /* ========== 页头：姓名与身份 ========== */
-        .header { margin-bottom: 40px; }
-        .header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 4px;
-        }
-        .header .tagline {
-            font-size: 1rem;
-            color: #6b7280;
-            margin-bottom: 16px;
-        }
-        .header .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px 20px;
-            font-size: 0.9rem;
-        }
+<!--
+  ======================================================================
+  Personal homepage — first-year undergraduate edition
+  ----------------------------------------------------------------------
+  · All content is live data — edit the text directly
+  · Avatar: swap <div class="avatar"> for
+      <img class="avatar" src="pic/avatar.jpg" alt="Bao Keyuan">
+  · School mark: swap <div class="logo"> for
+      <div class="logo"><img src="pic/school.png" alt=""></div>
+      and add  .logo img{width:100%;height:100%;object-fit:contain}
+  · Award level colours: .rank.gold / .rank.silver / .rank.bronze
+  · Add a new award by copying one <li> block under #contests
+  · GPA: add a line inside #education once your first-term results are out
+  · Single file, no dependencies — just open it in a browser
+  ======================================================================
+-->
 
-        /* ========== 章节标题 ========== */
-        .section { margin-bottom: 40px; }
-        .section h2 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #374151;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e5e7eb;
-            margin-bottom: 20px;
-        }
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --bg:#f1f3f6;
+  --card:#ffffff;
+  --ink:#1b1f24;
+  --ink-soft:#39424d;
+  --muted:#6b7684;
+  --line:#e4e8ee;
+  --line-soft:#eef1f5;
+  --blue:#1772d0;
+  --blue-deep:#0f5ba8;
+  --orange:#f09228;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(16,24,40,.04), 0 10px 28px -18px rgba(16,24,40,.22);
+  --font:"Inter","Segoe UI",-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC",sans-serif;
+  --mono:"SFMono-Regular",ui-monospace,"JetBrains Mono",Consolas,"Liberation Mono",monospace;
+}
 
-        /* ========== 条目：经历 / 教育 ========== */
-        .entry { margin-bottom: 24px; }
-        .entry:last-child { margin-bottom: 0; }
-        .entry-header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 8px;
-        }
-        .entry-title {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-        .entry-subtitle {
-            font-size: 0.9rem;
-            color: #6b7280;
-        }
-        .entry-date {
-            font-size: 0.85rem;
-            color: #9ca3af;
-            white-space: nowrap;
-        }
-        .entry-desc {
-            font-size: 0.9rem;
-            color: #4b5563;
-            margin-top: 6px;
-        }
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--font);
+  font-size:16px;
+  line-height:1.7;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 420px at 50% -160px, #ffffff 0%, rgba(255,255,255,0) 70%),
+    var(--bg);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+a{color:var(--blue);text-decoration:none;transition:color .18s ease}
+a:hover,a:focus-visible{color:var(--orange)}
+a:focus-visible{outline:2px solid rgba(23,114,208,.45);outline-offset:2px;border-radius:4px}
+strong{font-weight:600;color:var(--ink)}
+p{margin:0 0 .8em}
+p:last-child{margin-bottom:0}
+ul{margin:0;padding:0;list-style:none}
+img{max-width:100%;display:block}
+::selection{background:rgba(23,114,208,.16)}
 
-        /* ========== 论文列表 ========== */
-        .pub-item { margin-bottom: 20px; }
-        .pub-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-        .pub-authors {
-            font-size: 0.85rem;
-            color: #6b7280;
-            margin-bottom: 2px;
-        }
-        .pub-venue {
-            font-size: 0.85rem;
-            color: #9ca3af;
-            font-style: italic;
-        }
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
 
-        /* ========== 新闻列表 ========== */
-        .news-item {
-            display: flex;
-            gap: 16px;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-        .news-date {
-            color: #9ca3af;
-            white-space: nowrap;
-            font-variant-numeric: tabular-nums;
-        }
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  background:rgba(241,243,246,.78);
+  -webkit-backdrop-filter:saturate(180%) blur(12px);
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid transparent;
+  transition:background .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.topbar.is-stuck{
+  background:rgba(255,255,255,.86);
+  border-bottom-color:var(--line);
+  box-shadow:0 6px 24px -20px rgba(16,24,40,.5);
+}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:56px}
+.brand{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:.2px;white-space:nowrap}
+.nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{
+  padding:6px 12px;border-radius:999px;
+  font-size:14px;color:var(--ink-soft);white-space:nowrap;
+  transition:color .18s ease,background .18s ease;
+}
+.nav a:hover{color:var(--blue);background:rgba(23,114,208,.07)}
+.nav a.active{color:var(--blue);background:rgba(23,114,208,.09);font-weight:600}
 
-        /* ========== 页脚 ========== */
-        .footer {
-            margin-top: 64px;
-            padding-top: 24px;
-            border-top: 1px solid #e5e7eb;
-            font-size: 0.8rem;
-            color: #9ca3af;
-            text-align: center;
-        }
+/* ---------- profile ---------- */
+.profile{
+  display:flex;align-items:center;gap:30px;
+  margin-top:30px;padding:30px 32px;
+  background:linear-gradient(180deg,#ffffff 0%,#fcfdff 100%);
+  border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--shadow);
+  position:relative;overflow:hidden;
+}
+.profile::after{
+  content:"";position:absolute;inset:0 0 auto 0;height:3px;
+  background:linear-gradient(90deg,var(--blue) 0%,#5aa2ea 42%,var(--orange) 100%);
+  opacity:.9;
+}
+.avatar{
+  flex:0 0 auto;width:132px;height:132px;border-radius:16px;
+  display:grid;place-items:center;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:56px;font-weight:400;line-height:1;color:#fff;
+  background:linear-gradient(140deg,#5b9ae4 0%,#2b6cb8 52%,#1c4a80 100%);
+  box-shadow:0 12px 26px -14px rgba(23,114,208,.85),inset 0 1px 0 rgba(255,255,255,.35);
+  user-select:none;
+}
+img.avatar{object-fit:cover}
 
-        /* ========== 手机端微调 ========== */
-        @media (max-width: 480px) {
-            body { padding: 32px 16px 60px; }
-            .header h1 { font-size: 1.6rem; }
-            .entry-header { flex-direction: column; gap: 2px; }
-        }
-    </style>
+.who{min-width:0}
+.name{
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+  font-size:30px;font-weight:700;letter-spacing:-.2px;line-height:1.25;
+}
+.name .sub{font-size:14px;font-weight:400;letter-spacing:1.4px;color:var(--muted);text-transform:uppercase}
+.title-line{margin-top:6px;font-size:15.5px;color:var(--ink-soft)}
+.title-line b{font-weight:600;color:var(--blue)}
+.affil{margin-top:2px;font-size:14.5px;color:var(--muted);line-height:1.65}
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 12px;border-radius:999px;
+  border:1px solid var(--line);background:#fbfcfd;
+  font-size:13px;color:var(--ink-soft);line-height:1.5;
+  transition:all .18s ease;
+}
+.pill:hover{
+  color:var(--blue);border-color:#cfe0f5;background:#f5f9ff;
+  transform:translateY(-1px);box-shadow:0 6px 14px -10px rgba(23,114,208,.6);
+}
+.pill svg{width:14px;height:14px;flex:0 0 auto;fill:currentColor;opacity:.85}
+
+/* ---------- sections ---------- */
+.section{margin-top:36px;scroll-margin-top:76px}
+h2{
+  display:flex;align-items:center;gap:10px;
+  margin:0 0 14px;font-size:19px;font-weight:700;letter-spacing:.2px;
+}
+h2::before{
+  content:"";width:4px;height:19px;border-radius:2px;
+  background:linear-gradient(180deg,var(--blue),#79b4ee);
+  flex:0 0 auto;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px 26px;
+  box-shadow:var(--shadow);
+}
+.about-text{font-size:15.5px;line-height:1.85;color:var(--ink-soft)}
+.about-text strong{color:var(--ink);font-weight:600;background:linear-gradient(180deg,transparent 62%,rgba(23,114,208,.14) 62%)}
+
+/* now panel */
+.now{
+  margin-top:18px;padding:14px 16px;
+  background:#f8fafc;border:1px solid var(--line-soft);
+  border-left:3px solid #bcd8f4;border-radius:10px;
+}
+.now-row{display:grid;grid-template-columns:118px 1fr;gap:10px;padding:6px 0;font-size:14.5px;color:var(--ink-soft)}
+.now-row .k{color:var(--muted);font-size:13.5px;letter-spacing:.3px}
+.now-row + .now-row{border-top:1px dashed #e8eef6}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;padding-top:16px;border-top:1px dashed var(--line)}
+.chip{
+  font-size:13px;color:#255a91;background:#f2f7fd;
+  border:1px solid #dbe8f7;border-radius:8px;padding:4px 10px;line-height:1.6;
+}
+
+/* ---------- news ---------- */
+.news li{
+  display:grid;grid-template-columns:104px 1fr;gap:14px;
+  padding:10px 0;border-bottom:1px dashed var(--line-soft);
+  font-size:15px;line-height:1.7;color:var(--ink-soft);
+}
+.news li:first-child{padding-top:2px}
+.news li:last-child{border-bottom:0;padding-bottom:2px}
+.news .date{
+  font-family:var(--mono);font-size:12.5px;color:#8b95a3;
+  letter-spacing:.2px;padding-top:3px;
+}
+.news b{color:var(--ink);font-weight:600}
+
+/* ---------- contests ---------- */
+.group-label{
+  display:flex;align-items:center;gap:10px;
+  font-size:12px;font-weight:600;letter-spacing:1.2px;
+  color:#98a2b0;text-transform:uppercase;
+  margin:2px 0 6px;
+}
+.group-label::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+.award-group + .award-group{margin-top:22px}
+.award-list li{
+  display:flex;align-items:center;gap:16px;
+  padding:13px 0;border-bottom:1px dashed var(--line-soft);
+}
+.award-list li:last-child{border-bottom:0;padding-bottom:2px}
+.rank{
+  flex:0 0 auto;min-width:64px;padding:7px 10px;border-radius:10px;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  border:1px solid;white-space:nowrap;
+}
+.rank.gold{color:#8a5b00;background:linear-gradient(160deg,#fff8e8,#ffedc7);border-color:#f0d59a}
+.rank.silver{color:#55627a;background:linear-gradient(160deg,#f7f9fc,#e9eef6);border-color:#d9e1ec}
+.rank.bronze{color:#8f4f2c;background:linear-gradient(160deg,#fdf2e9,#f7e0cf);border-color:#eccbb2}
+.award-main{min-width:0;flex:1}
+.award-name{font-size:15.3px;font-weight:600;color:var(--ink);line-height:1.5}
+.award-meta{margin-top:2px;font-size:13.5px;color:var(--muted);line-height:1.6}
+.award-meta .sep{margin:0 7px;color:#cbd3dd}
+.award-year{
+  flex:0 0 auto;font-family:var(--mono);font-size:12.5px;
+  color:#98a2b0;letter-spacing:.3px;
+}
+
+/* ---------- education ---------- */
+.edu{display:flex;align-items:flex-start;gap:18px}
+.edu-main{flex:1;min-width:0}
+.edu-school{font-size:15.8px;font-weight:600;color:var(--ink)}
+.edu-school .place{font-weight:400;color:var(--muted);font-size:13.5px;margin-left:6px}
+.edu-major{margin-top:2px;font-size:14.5px;color:var(--ink-soft)}
+.edu-major .when{font-family:var(--mono);font-size:12.5px;color:#8b95a3;margin-left:8px}
+.edu-meta{margin-top:6px;font-size:13.8px;color:var(--muted);line-height:1.75}
+.logo{
+  flex:0 0 auto;width:58px;height:58px;border-radius:13px;
+  display:grid;place-items:center;overflow:hidden;margin-left:auto;
+  font-size:13px;font-weight:700;letter-spacing:.5px;color:#fff;
+  background:linear-gradient(140deg,#2f8fd8,#14639f);
+  box-shadow:0 8px 18px -14px rgba(16,24,40,.9),inset 0 1px 0 rgba(255,255,255,.28);
+}
+.logo img{width:100%;height:100%;object-fit:contain}
+
+/* ---------- footer ---------- */
+footer{
+  margin:44px 0 40px;padding-top:20px;
+  border-top:1px solid var(--line);
+  text-align:center;font-size:13px;color:#98a2b0;line-height:1.9;
+}
+footer .dot-sep{margin:0 8px;color:#c8d0da}
+footer a{color:#8b95a3}
+footer a:hover{color:var(--blue)}
+
+/* ---------- reveal ---------- */
+.js .reveal{opacity:0;transform:translateY(14px)}
+.js .reveal.in{
+  opacity:1;transform:none;
+  transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1);
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal,.js .reveal.in{opacity:1;transform:none;transition:none}
+  *{animation:none!important}
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .profile{gap:22px;padding:24px}
+  .avatar{width:104px;height:104px;font-size:44px;border-radius:14px}
+  .name{font-size:25px}
+}
+@media (max-width:720px){
+  body{font-size:15.5px}
+  .topbar .wrap{height:52px}
+  .nav a{padding:5px 10px;font-size:13px}
+  .profile{flex-direction:column;align-items:flex-start;gap:18px;padding:22px}
+  .avatar{width:88px;height:88px;font-size:36px;border-radius:12px}
+  .name{font-size:23px;gap:8px}
+  .name .sub{font-size:12px}
+  .card{padding:18px}
+  .news li{grid-template-columns:1fr;gap:2px}
+  .news .date{padding-top:0}
+  .award-list li{gap:12px;align-items:flex-start}
+  .rank{min-width:56px;font-size:9.5px;padding:6px 8px;border-radius:9px}
+  .award-year{display:none}
+  .now-row{grid-template-columns:1fr;gap:0}
+  .section{margin-top:28px}
+}
+@media (max-width:420px){
+  .wrap{padding:0 14px}
+  .links{gap:6px}
+  .pill{padding:4px 10px;font-size:12.5px}
+}
+
+/* ---------- print ---------- */
+@media print{
+  body{background:#fff}
+  .topbar{display:none}
+  .js .reveal{opacity:1!important;transform:none!important}
+  .profile,.card{box-shadow:none;border-color:#d8dde5;break-inside:avoid}
+  .section{margin-top:22px}
+  a{color:var(--ink)}
+}
+</style>
 </head>
+
 <body>
 
-    <!-- ============================================================
-         1. 页头：姓名、身份标签、联系方式
-         把所有“你的名字”等替换成你自己的信息
-         ============================================================ -->
-    <header class="header">
-        <h1>LiuyiJushi</h1>
-        <p class="tagline">WLU ug</p>
-        <div class="contact-links">
-            <a href="mailto:你的邮箱@example.com">liuyijushi61hermit@gmail.com</a>
-            <a href="https://github.com/你的用户名" target="_blank">bkyuan1</a>
-            <a href="https://scholar.google.com/你的GoogleScholar链接" target="_blank">Google Scholar</a>
-            <!-- 不需要的链接可以整行删掉 -->
-        </div>
-    </header>
+<header class="topbar" id="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">Bao Keyuan</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#contests">Contests</a>
+      <a href="#education">Education</a>
+    </nav>
+  </div>
+</header>
 
-    <!-- ============================================================
-         2. 关于我：一段简短的自我介绍
-         ============================================================ -->
-    <section class="section">
-        <h2>About me</h2>
-        <p style="font-size: 0.95rem; color: #4b5563;">
-            <!--
-            这里写一段简短的自我介绍。例如：我目前是 XX 大学 XX 专业的博士研究生，
-            研究兴趣包括机器学习、计算机视觉等。在此之前，我在 XX 公司担任 XX 职位，
-            硕士毕业于 XX 大学。我致力于探索更高效、可靠的智能系统。
-            -->
-            This guy is mysterious and has left nothing~
-        </p>
-    </section>
+<main class="wrap" id="top">
 
-    <!-- ============================================================
-         3. 新闻 / 动态（可选）
-         不需要可以整个 <section> 删掉
-         ============================================================ -->
-    <section class="section">
-        <h2>New</h2>
+  <!-- ===== profile ===== -->
+  <section class="profile reveal">
+    <!-- swap for <img class="avatar" src="pic/avatar.jpg" alt="Bao Keyuan"> -->
+    <div class="avatar" role="img" aria-label="Portrait of Bao Keyuan">B</div>
 
-        <div class="news-item">
-            <span class="news-date">2026.6</span>
-            <span>Graduate from high school.</span>
-        <!--
-        <div class="news-item">
-            <span class="news-date">2026.10</span>
-            <span>一篇论文被 XXX 会议录用。</span>
-        </div>
-        <div class="news-item">
-            <span class="news-date">2026.08</span>
-            <span>开始在 XX 单位担任 XX 职位。</span>
-        </div>
-        <div class="news-item">
-            <span class="news-date">2026.06</span>
-            <span>获得 XX 学位 / 奖项。</span>
-        </div>
-        -->
-    </section>
+    <div class="who">
+      <div class="name">Bao Keyuan <!--<span class="sub">Class of 2030</span>--></div>
+      <div class="title-line"><b>First-year undergraduate</b>, ENCODE Lab (PI: Prof. Wang Huan)</div>
+      <div class="affil">
+        Hangzhou, China<br>
+        Direction: fundamental research in artificial intelligence
+      </div>
+      <div class="links">
+        <a class="pill" href="mailto:baokeyuan@westlake.edu.cn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5A2.5 2.5 0 0 1 5.5 3h13A2.5 2.5 0 0 1 21 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 18.5v-13Zm2.2-.5 6.8 5.2L18.8 5H5.2ZM19 6.9l-6.4 4.9a1 1 0 0 1-1.2 0L5 6.9v11.6c0 .3.2.5.5.5h13c.3 0 .5-.2.5-.5V6.9Z"/></svg>
+          baokeyuan [at] westlake.edu.cn
+        </a>
+        <a class="pill" href="https://github.com/bkyuan1" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.1c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .98-.31 3.2 1.18a11 11 0 0 1 5.83 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .3.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+          GitHub
+        </a>
+        <a class="pill" href="https://www.luogu.com.cn/user/626973" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H12v18H5.5A1.5 1.5 0 0 1 4 19.5v-15ZM13.6 3H18.5A1.5 1.5 0 0 1 20 4.5v15a1.5 1.5 0 0 1-1.5 1.5h-4.9V3Z"/></svg>
+          Luogu
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- ============================================================
-         4. 教育经历
-         每个 <div class="entry"> 是一条经历，复制粘贴可以增加更多
-         ============================================================  
+  <!-- ===== about ===== -->
+  <section class="section reveal" id="about">
+    <h2>About Me</h2>
+    <div class="card about-text">
+      <p>
+        I am a first-year undergraduate at <a href="https://www.westlake.edu.cn/" target="_blank" rel="noopener">Westlake University</a> in Hangzhou.
+        Although I have not declared a major yet, my direction is <strong>fundamental research in artificial intelligence</strong>.
+        I was introduced to competitive programming in middle school and never really stopped: this October I represented
+        the university at the <strong>2026 ICPC Asia Xi'an Regional Contest</strong>, where our team took a
+        <strong>bronze medal</strong>.
+      </p>
+      <p>
+        Right now I am doing two things in parallel — keeping up with contest training, and building the mathematical
+        and algorithmic foundations for AI. Farther out, I would like to work on <strong>algorithm optimization</strong>:
+        making models and systems faster and cheaper without giving up what they can do.
+      </p>
 
-    <section class="section">
-        <h2>教育经历</h2>
+      <div class="now">
+        <div class="now-row"><span class="k">Learning</span><span>Fundamental Analysis and Algebra; basic AI algorithms</span></div>
+        <div class="now-row"><span class="k">Doing</span><span>Competitive programming — weekly training and upsolving</span></div>
+      </div>
 
-        <div class="entry">
-            <div class="entry-header">
-                <span class="entry-title">你的学位 · 你的专业</span>
-                <span class="entry-date">2022 – 至今</span>
+      <div class="chips">
+        <span class="chip">Competitive Programming</span>
+        <span class="chip">Algorithms</span>
+        <span class="chip">AI Foundations</span>
+        <span class="chip">Algorithm Optimization</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== news ===== -->
+  <section class="section reveal" id="news">
+    <h2>News</h2>
+    <div class="card">
+      <ul class="news">
+        <li>
+          <span class="date">2026.11</span>
+          <span>Joined <b>ENCODE Lab</b> led by Prof.Wang Huan. </span>
+        </li>
+        <li>
+          <span class="date">2026.10</span>
+          <span>Won a <b>bronze medal</b> at the 2026 ICPC Asia Xi'an Regional Contest, solving 4 problems with our team.</span>
+        </li>
+        <li>
+          <span class="date">2026.09</span>
+          <span>Started my undergraduate studies at <b>Westlake University</b>.</span>
+        </li>
+        <li>
+          <span class="date">2025.11</span>
+          <span>Awarded <b>Second Prize</b> in NOIP 2025 (National Olympiad in Informatics in Provinces).</span>
+        </li>
+        <li>
+          <span class="date">2025.11</span>
+          <span>Awarded <b>First Prize</b> in the CCF CSP-S 2025 (Senior Division).</span>
+        </li>
+        <li>
+          <span class="date">Earlier</span>
+          <span>Started competitive programming in middle school.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== contests ===== -->
+  <section class="section reveal" id="contests">
+    <h2>Contests</h2>
+    <div class="card">
+      <div class="award-group">
+        <div class="group-label">University</div>
+        <ul class="award-list">
+          <li>
+            <span class="rank bronze">Bronze</span>
+            <div class="award-main">
+              <div class="award-name">2026 ICPC Asia Xi'an Regional Contest</div>
+              <div class="award-meta">Team of three<span class="sep">·</span>4 problems solved<span class="sep">·</span>Xi'an, China</div>
             </div>
-            <div class="entry-subtitle">你的大学名称</div>
-            <p class="entry-desc">研究方向 / 导师 / 简短说明（可选）。</p>
-        </div>
+            <div class="award-year">2026.10</div>
+          </li>
+        </ul>
+      </div>
 
-        <div class="entry">
-            <div class="entry-header">
-                <span class="entry-title">学士 · 你的专业</span>
-                <span class="entry-date">2018 – 2022</span>
+      <div class="award-group">
+        <div class="group-label">High School</div>
+        <ul class="award-list">
+          <li>
+            <span class="rank silver">2nd</span>
+            <div class="award-main">
+              <div class="award-name">NOIP 2025</div>
+              <div class="award-meta">National Olympiad in Informatics in Provinces<span class="sep">·</span>Second Prize</div>
             </div>
-            <div class="entry-subtitle">你的大学名称</div>
-        </div>
-        <!-- 想加更多教育经历，把上面的 <div class="entry">...</div> 复制一份改文字即可 -->
-    
-    <!--
-    </section>
-    -->
-   
-
-    <!-- ============================================================
-         5. 工作 / 研究经历
-         ============================================================ 
-    <section class="section">
-        <h2>经历</h2>
-
-        <div class="entry">
-            <div class="entry-header">
-                <span class="entry-title">你的职位</span>
-                <span class="entry-date">2024 – 至今</span>
+            <div class="award-year">2025.11</div>
+          </li>
+          <li>
+            <span class="rank gold">1st</span>
+            <div class="award-main">
+              <div class="award-name">CCF CSP-S 2025 · Senior Division</div>
+              <div class="award-meta">CCF Certified Software Professional<span class="sep">·</span>First Prize</div>
             </div>
-            <div class="entry-subtitle">公司 / 机构名称</div>
-            <p class="entry-desc">
-                用一两句话说明你在这里做了什么。例如：负责 XX 系统的开发与优化，
-                主导了 XX 模块的设计，将性能提升了 XX%。
-            </p>
+            <div class="award-year">2025.11</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== education ===== -->
+  <section class="section reveal" id="education">
+    <h2>Education</h2>
+    <div class="card">
+      <div class="edu">
+        <div class="edu-main">
+          <div class="edu-school">Westlake University<span class="place">Hangzhou, China</span></div>
+          <div class="edu-major">Undergraduate · Major not yet declared<span class="when">2026.09 – 2030.06</span></div>
+          <div class="edu-meta">Currently taking Fundamental Analysis and Algebra; self-studying basic AI algorithms</div>
+          <!-- add once results are out: <div class="edu-meta">GPA: 3.8 / 4.0 (top 5%)</div> -->
         </div>
+        <div class="logo">WLU</div>
+      </div>
+    </div>
+  </section>
 
-        <div class="entry">
-            <div class="entry-header">
-                <span class="entry-title">实习职位</span>
-                <span class="entry-date">2023 – 2024</span>
-            </div>
-            <div class="entry-subtitle">公司 / 机构名称</div>
-            <p class="entry-desc">简短描述你的贡献或成果。</p>
-        </div>
-        <!-- 复制粘贴增加更多经历 
+  <footer>
+    <div>© 2026 Bao Keyuan</div>
+    <div>
+      Last updated October 2026
+      <span class="dot-sep">·</span>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
 
-    </section>
-    -->
-    
-    <!-- ============================================================
-         6. 发表成果（论文、项目等）
-         不需要可以整个 <section> 删掉
-         ============================================================ 
-    <section class="section">
-        <h2>发表成果</h2>
+</main>
 
-        <div class="pub-item">
-            <div class="pub-title">你的论文标题</div>
-            <div class="pub-authors">你的名字, 合作者A, 合作者B</div>
-            <div class="pub-venue">会议 / 期刊名称, 年份</div>
-            <!-- 有链接的话，可以把下面这行取消注释并填入网址 -->
-            <!-- <div><a href="论文链接" target="_blank">PDF</a> · <a href="代码链接" target="_blank">代码</a></div> --><!--
-        </div>
+<script>
+(function () {
+  var bar = document.getElementById('topbar');
+  function onScroll() {
+    if (window.scrollY > 8) bar.classList.add('is-stuck');
+    else bar.classList.remove('is-stuck');
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 
-        <div class="pub-item">
-            <div class="pub-title">第二篇论文标题</div>
-            <div class="pub-authors">你的名字, 合作者</div>
-            <div class="pub-venue">会议 / 期刊名称, 年份</div>
-        </div>
-        <!-- 复制粘贴增加更多成果 
+  var reveals = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
 
-    </section>
-    
-    -->
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var sections = links.map(function (a) {
+    return document.querySelector(a.getAttribute('href'));
+  }).filter(Boolean);
 
-    
-    <!-- ============================================================
-         页脚：版权信息，改一下名字和年份即可
-         ============================================================ -->
-    <footer class="footer">
-        © 2026 你的名字
-    </footer>
-
+  if ('IntersectionObserver' in window && sections.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+        });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+})();
+</script>
 </body>
 </html>
